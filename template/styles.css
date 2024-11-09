@@ -1,0 +1,244 @@
+/* Import Wonderland-inspired fonts */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'IM Fell English SC', serif;
+    color: #333;
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Background image and white overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../files/background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white overlay */
+    z-index: -1;
+}
+
+/* Centering container for title and buttons */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Title styling */
+h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 4em;
+    color: #4b0048;
+    margin: 0;
+    font-weight: 700;
+    text-shadow: 2px 2px #ffffff; /* Adds slight depth to title */
+}
+
+/* Buttons in a row below the title */
+.buttons-container {
+    display: flex;
+    gap: 20px;
+}
+
+/* Button styling */
+.difficulty-button {
+    width: 200px;
+    padding: 15px;
+    font-size: 1.1em;
+    font-family: 'IM Fell English SC', serif;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Button hover effect */
+.difficulty-button:hover {
+    transform: translateY(-5px); /* Lift button slightly on hover */
+}
+
+/* Container for each button and its label */
+.button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Styling for difficulty level labels */
+.difficulty-label {
+    font-size: 1em;
+    color: #4b0048;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+/* Button styles for each difficulty level */
+
+/* Existing button styles */
+.button-white-rabbit {
+    background-color: #fffacd;
+    width: 200px;
+    padding: 15px;
+    font-size: 1.2em;
+    font-family: 'IM Fell English SC', serif;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative; /* Enables positioning of hover image */
+}
+
+.button-white-rabbit:hover {
+    background-color: #f5deb3;
+}
+
+/* Hover effect to display the white rabbit image */
+.button-white-rabbit::after {
+    content: "";
+    position: absolute;
+    top: -40px; /* Adjust as needed to position the image above the button */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px; /* Adjust size as needed */
+    height: 50px;
+    background-image: url('../files/bunny.png'); /* Update with the actual path to the rabbit icon */
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.2s ease-in; /* Smooth fade-in */
+}
+
+.button-white-rabbit:hover::after {
+    opacity: 1;
+}
+
+
+/* Existing button styles for Cheshire Cat */
+.button-cheshire-cat {
+    background-color: #dda0dd;
+    width: 200px;
+    padding: 15px;
+    font-size: 1.2em;
+    font-family: 'IM Fell English SC', serif;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative; /* Enables positioning of hover image */
+}
+
+.button-cheshire-cat:hover {
+    background-color: #da70d6;
+}
+
+/* Hover effect to display the Cheshire Cat image */
+.button-cheshire-cat::after {
+    content: "";
+    position: absolute;
+    top: -40px; /* Adjust as needed to position the image above the button */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px; /* Adjust size as needed */
+    height: 50px;
+    background-image: url('../files/cat.png'); /* Update with the actual path to the Cheshire Cat icon */
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+}
+
+.button-cheshire-cat:hover::after {
+    opacity: 1;
+}
+
+/* Existing button styles for Queen of Hearts */
+.button-queen-of-hearts {
+    background-color: #ff6347;
+    width: 200px;
+    padding: 15px;
+    font-size: 1.2em;
+    font-family: 'IM Fell English SC', serif;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative; /* Enables positioning of hover image */
+}
+
+.button-queen-of-hearts:hover {
+    background-color: #ff4500;
+}
+
+/* Hover effect to display the Queen of Hearts image */
+.button-queen-of-hearts::after {
+    content: "";
+    position: absolute;
+    top: -35px; /* Adjust as needed to position the image above the button */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px; /* Adjust size as needed */
+    height: 40px;
+    background-image: url('../files/hearts.png'); /* Update with the actual path to the Queen of Hearts icon */
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+}
+
+.button-queen-of-hearts:hover::after {
+    opacity: 1;
+}
+
+/* Existing button styles */
+.button-mad-hatter {
+    background-color: #87ceeb;
+    width: 200px;
+    padding: 15px;
+    font-size: 1.2em;
+    font-family: 'IM Fell English SC', serif;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative; /* Enables positioning of hover image */
+}
+
+.button-mad-hatter:hover {
+    background-color: #4682b4;
+}
+
+/* Hover effect to display the top hat image */
+.button-mad-hatter::after {
+    content: "";
+    position: absolute;
+    top: -40px; /* Adjust as needed to position the image above the button */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px; /* Adjust size as needed */
+    height: 50px;
+    background-image: url('../files/tophat.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.2s ease-in; /* Smooth fade-in */
+}
+
+/* Change opacity on hover */
+.button-mad-hatter:hover::after {
+    opacity: 1;
+}
+
