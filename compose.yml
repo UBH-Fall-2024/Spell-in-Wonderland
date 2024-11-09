@@ -1,6 +1,8 @@
 services:
   mongo:
-    image: mongo:4.2.5
+    image: mongo
+    ports: 
+    - '27017:27017'
   web:
     build: .
     environment:

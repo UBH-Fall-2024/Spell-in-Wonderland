@@ -1,4 +1,5 @@
 from flask import Blueprint
+from pymongo import MongoClient
 
 spell_bp = Blueprint('spell_bp', __name__,
     template_folder='templates',
