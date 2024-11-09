@@ -58,6 +58,7 @@ h1 {
 .difficulty-button {
     width: 200px;
     padding: 15px;
+    margin-top: 50px;
     font-size: 1.1em;
     font-family: 'IM Fell English SC', serif;
     border-radius: 10px;
@@ -152,8 +153,8 @@ h1 {
     top: -40px; /* Adjust as needed to position the image above the button */
     left: 50%;
     transform: translateX(-50%);
-    width: 50px; /* Adjust size as needed */
-    height: 50px;
+    width: 45px; /* Adjust size as needed */
+    height: 45px;
     background-image: url('../static/cat.png'); /* Update with the actual path to the Cheshire Cat icon */
     background-size: contain;
     background-repeat: no-repeat;
@@ -187,7 +188,7 @@ h1 {
 .button-queen-of-hearts::after {
     content: "";
     position: absolute;
-    top: -35px; /* Adjust as needed to position the image above the button */
+    top: -40px; /* Adjust as needed to position the image above the button */
     left: 50%;
     transform: translateX(-50%);
     width: 40px; /* Adjust size as needed */

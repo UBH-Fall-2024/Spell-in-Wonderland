@@ -19,6 +19,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
+
 }
 
 /* Background image and white overlay */
@@ -48,7 +49,7 @@ body::before {
     font-size: 1.8em;
     font-style: italic;
     color: #4b0048;
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
 /* Part of speech styling */
@@ -56,14 +57,14 @@ body::before {
     font-size: 1.3em;
     font-weight: bold;
     color: #333;
-    margin-top: 5px; /* Reduced space */
+    margin-top: -10px; /* Reduced space */
 }
 
 /* Definition styling */
 .definition {
     font-size: 1.2em;
     color: #333;
-    margin-top: 8px; /* Reduced space */
+    margin-top: -20px; /* Reduced space */
     line-height: 1.4; /* Reduced line height */
 }
 
@@ -72,7 +73,7 @@ body::before {
     font-size: 1.1em;
     color: #777;
     font-style: italic;
-    margin-top: 8px; /* Reduced space */
+    margin-top: -20px; /* Reduced space */
     line-height: 1.4;
 }
 
@@ -83,13 +84,15 @@ body::before {
 
 /* Input field styling */
 .form-container input[type="text"] {
-    width: 100%;
+    width: 80%; /* Adjust width as needed */
     padding: 12px;
     font-size: 1.2em;
-    margin-top: 10px;
+    margin-top: 50px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-family: 'Times New Roman', serif;
+    display: block;
+    margin: 0 auto; /* Centers input field horizontally */
 }
 
 /* Submit button styling */
