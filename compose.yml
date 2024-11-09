@@ -1,0 +1,12 @@
+services:
+  mongo:
+    image: mongo:4.2.5
+  web:
+    build: .
+    environment:
+      WAIT_HOSTS: mongo:27017
+    # flask requires SIGINT to stop gracefully
+    # (default stop signal from Compose is SIGTERM)
+    stop_signal: SIGINT
+    ports:
+      - '8080:8080'
