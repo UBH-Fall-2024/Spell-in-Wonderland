@@ -1,0 +1,122 @@
+/* General body styling */
+body {
+    font-family: 'IM Fell English SC', serif;
+    color: #333;
+    background-color: #f9f9f9;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+}
+
+/* Container styling */
+.container {
+    max-width: 700px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* Background image and white overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../files/background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white overlay */
+    z-index: -1;
+}
+
+/* Title styling */
+h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5em;
+    color: #4b0048;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Instruction text */
+.container p {
+    font-size: 1.2em;
+    text-align: center;
+    color: #555;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Pronunciation styling */
+.pronunciation {
+    font-size: 1.8em;
+    font-style: italic;
+    color: #4b0048;
+    margin-top: 20px;
+}
+
+/* Part of speech styling */
+.part-of-speech {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Definition styling */
+.definition {
+    font-size: 1.2em;
+    color: #333;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+/* Example sentence styling */
+.example {
+    font-size: 1.1em;
+    color: #777;
+    font-style: italic;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+/* Form container styling */
+.form-container {
+    margin-top: 25px;
+}
+
+/* Input field styling */
+.form-container input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.2em;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'IM Fell English SC', serif;
+}
+
+/* Submit button styling */
+.form-container button {
+    padding: 12px 25px;
+    font-size: 1.2em;
+    margin-top: 15px;
+    background-color: #4b0048;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+}
+
+.form-container button:hover {
+    background-color: #3a0037;
+}

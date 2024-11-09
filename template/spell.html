@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spell in Wonderland - Listening Practice</title>
+    <link rel="stylesheet" href="spellStyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <p>Listen to the word, read the definition, and type what you hear!</p>
+
+        <!-- Word details with font hierarchy -->
+        <div class="word-details">
+            <p class="pronunciation">/ˌakwēˈes/</p>
+            <p class="part-of-speech">verb</p>
+            <p class="definition">Accept something reluctantly but without protest.</p>
+            <p class="example">"Sara acquiesced in his decision"</p>
+        </div>
+
+        <!-- Form with text box and submit button -->
+        <div class="form-container">
+            <form onsubmit="checkAnswer(); return false;">
+                <input type="text" id="answer" placeholder="Type the word here...">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const userAnswer = document.getElementById('answer').value.trim();
+            const correctAnswer = "acquiesce"; // Replace with the actual word
+            if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                alert("Correct! Great job!");
+            } else {
+                alert("Try again! Listen closely.");
+            }
+        }
+    </script>
+</body>
+</html>
