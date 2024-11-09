@@ -20,7 +20,7 @@ body::before {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: url('../files/background.webp');
+    background-image: url('../static/background.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -115,7 +115,7 @@ h1 {
     transform: translateX(-50%);
     width: 50px; /* Adjust size as needed */
     height: 50px;
-    background-image: url('../files/bunny.png'); /* Update with the actual path to the rabbit icon */
+    background-image: url('../static/bunny.png'); /* Update with the actual path to the rabbit icon */
     background-size: contain;
     background-repeat: no-repeat;
     opacity: 0;
@@ -154,7 +154,7 @@ h1 {
     transform: translateX(-50%);
     width: 50px; /* Adjust size as needed */
     height: 50px;
-    background-image: url('../files/cat.png'); /* Update with the actual path to the Cheshire Cat icon */
+    background-image: url('../static/cat.png'); /* Update with the actual path to the Cheshire Cat icon */
     background-size: contain;
     background-repeat: no-repeat;
     opacity: 0;
@@ -192,7 +192,7 @@ h1 {
     transform: translateX(-50%);
     width: 40px; /* Adjust size as needed */
     height: 40px;
-    background-image: url('../files/hearts.png'); /* Update with the actual path to the Queen of Hearts icon */
+    background-image: url('../static/hearts.png'); /* Update with the actual path to the Queen of Hearts icon */
     background-size: contain;
     background-repeat: no-repeat;
     opacity: 0;
@@ -230,7 +230,7 @@ h1 {
     transform: translateX(-50%);
     width: 50px; /* Adjust size as needed */
     height: 50px;
-    background-image: url('../files/tophat.png');
+    background-image: url('../static/tophat.png');
     background-size: contain;
     background-repeat: no-repeat;
     opacity: 0;
