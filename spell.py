@@ -57,6 +57,17 @@ def get_word():
     data = {"word": chosen_word}
     return json.dumps(data)
     
+@spell_bp.route('/spell', methods=["PUT"])
+def update_record():
+    user_id = request.cookies["user_id"]
+    word = request.json['wordGiven']
+    correct = request.json['correct']
+    if correct:
+        records.update_one({"user_id": user_id}, {"$push": {"correct": word}})
+    else:
+        records.update_one({"user_id": user_id}, {"$push": {"wrong": word}})
+
+
 @spell_bp.route('/spellStyles.css', methods=["GET"])
 def serve_home_css():
     response = send_file('./templates/spellStyles.css', mimetype='text/css')
