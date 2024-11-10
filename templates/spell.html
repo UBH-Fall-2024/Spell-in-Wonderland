@@ -39,12 +39,12 @@
     </div>
     
     <script>
- let correctAnswer = "";
+let correctAnswer = "";
 let audioUrl = "";
 let audio; // Global audio object
 
 window.onload = function() {
-    const word = 'heterogeneity';
+    const word = 'nauseous';
     fetchWordData(word);
 };
 
@@ -57,7 +57,10 @@ function fetchWordData(word) {
         .then(data => {
             const wordData = data[0];
             correctAnswer = wordData.meta.id; // Set correct answer for submission check
-            
+
+            // Display the base word without any suffix
+            document.getElementById('correct-word').textContent = correctAnswer.split(':')[0];
+
             // Extract the first available phonetic text and audio URL
             const phonetic = wordData.hwi.prs[0]?.ipa ? `[${wordData.hwi.prs[0].ipa}]` : ''; 
             audioUrl = wordData.hwi.prs[0]?.sound ? `https://media.merriam-webster.com/audio/prons/en/us/mp3/${wordData.hwi.prs[0].sound.audio.charAt(0)}/${wordData.hwi.prs[0].sound.audio}.mp3` : '';
@@ -67,7 +70,6 @@ function fetchWordData(word) {
             const definition = wordData.shortdef[0] || ''; 
 
             // Populate HTML elements with fetched data
-            document.getElementById('correct-word').textContent = correctAnswer;
             document.getElementById('phonetic-text').textContent = phonetic;
             document.querySelector('.part-of-speech').textContent = partOfSpeech;
             document.querySelector('.definition').textContent = definition;
@@ -87,35 +89,48 @@ function fetchWordData(word) {
         .catch(error => console.error('Error fetching data:', error));
 }
 
+
 function playPronunciation() {
     if (audioUrl && audio) {
         audio.play();
     }
 }
-
 function handleSubmit(event) {
     event.preventDefault();
-    const userAnswer = document.getElementById('answer').value.trim();
+    const userAnswer = document.getElementById('answer').value.trim().toLowerCase(); // Trim and convert to lowercase
     const correctWordElement = document.getElementById('correct-word');
     const submitBtn = document.getElementById('submit-btn');
 
-    // Color the input field based on correctness
-    if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+    // Compare user input to correct answer, ignoring case and whitespace
+    if (userAnswer === correctAnswer.split(':')[0].toLowerCase()) { // Trim and lowercase correct answer
         document.getElementById('answer').style.color = "green";
     } else {
         document.getElementById('answer').style.color = "red";
     }
 
-    // Show correct answer
+    // Show correct answer with fade-in effect
     correctWordElement.classList.add("shown");
+    correctWordElement.classList.remove("fade-out"); // Ensure it's not in fade-out mode
 
-    // Change button to "Next Word"
+    // Change button to "Next Word" and adjust functionality
     submitBtn.textContent = "Next Word";
-    submitBtn.onclick = loadNextWord;
+    submitBtn.onclick = function(event) {
+        event.preventDefault();
+        loadNextWord();
+    };
 }
 
 function loadNextWord() {
-    document.getElementById('correct-word').textContent = "";
+    const correctWordElement = document.getElementById('correct-word');
+    
+    // Apply fade-out effect, then hide it after the transition
+    correctWordElement.classList.add("fade-out");
+    setTimeout(() => {
+        correctWordElement.classList.remove("shown", "fade-out"); // Instantly hide after fade-out
+    }, 200); // Match the fade-out duration
+
+    // Reset fields and button
+    correctWordElement.textContent = "";
     document.getElementById('answer').value = "";
     document.getElementById('answer').style.color = "black";
     document.getElementById('submit-btn').textContent = "Submit";
@@ -124,7 +139,6 @@ function loadNextWord() {
     const nextWord = "example";  // Replace with logic to fetch the next word
     fetchWordData(nextWord);
 }
-
 
     </script>
 </body>
