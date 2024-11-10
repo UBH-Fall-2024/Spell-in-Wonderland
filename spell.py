@@ -1,5 +1,6 @@
-from flask import Blueprint, send_file, make_response, request, render_template, current_app
+from flask import Blueprint, send_file, make_response, request, render_template, current_app, redirect, url_for
 from pymongo import MongoClient
+import secrets
 import json
 import random
 
@@ -16,13 +17,11 @@ spell_bp = Blueprint('spell_bp', __name__,
 def easy_mode():
     response = send_file('./templates/spell.html', mimetype='text/html')
     if "user_id" not in request.cookies:
-        return send_file('./templates/home.html', mimetype="text/html")
+        return redirect(url_for("home"))
     curr_user = records.find_one({"user_id":request.cookies.get("user_id")})
-    current_app.logger.info(request.cookies.get(curr_user))
+    current_app.logger.info(curr_user)
     if curr_user == None:
-        new_response = send_file('./templates/home.html', mimetype="text/html")
-        new_response.set_cookie("user_id", max_age=0)
-        return new_response
+        return redirect(url_for("home"))
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.set_cookie("mode", value="easy", httponly=True, secure=True)
     return make_response(response)
@@ -34,8 +33,7 @@ def medium_mode():
         return send_file('./templates/home.html', mimetype="text/html")
     curr_user = records.find_one({"user_id":request.cookies.get("user_id")})
     if curr_user == None:
-        response.set_cookie("user_id", max_age=0)
-        return send_file('./templates/home.html', mimetype="text/html")
+        return redirect(url_for("home"))
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.set_cookie("mode", value="medium", httponly=True, secure=True)
     return make_response(response)
@@ -47,8 +45,7 @@ def hard_mode():
         return send_file('./templates/home.html', mimetype="text/html")
     curr_user = records.find_one({"user_id":request.cookies.get("user_id")})
     if curr_user == None:
-        response.set_cookie("user_id", max_age=0)
-        return send_file('./templates/home.html', mimetype="text/html")
+        return redirect(url_for("home"))
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.set_cookie("mode", value="hard", httponly=True, secure=True)
     return make_response(response)
@@ -60,8 +57,7 @@ def expert_mode():
         return send_file('./templates/home.html', mimetype="text/html")
     curr_user = records.find_one({"user_id":request.cookies.get("user_id")})
     if curr_user == None:
-        response.set_cookie("user_id", max_age=0)
-        return send_file('./templates/home.html', mimetype="text/html")
+        return redirect(url_for("home"))
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.set_cookie("mode", value="expert", httponly=True, secure=True)
     return make_response(response)
