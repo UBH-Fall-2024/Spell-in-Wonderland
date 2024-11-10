@@ -19,7 +19,6 @@ def csv_to_db():
     with open('words.csv', 'r') as readIN:
         reader = csv.DictReader(readIN, fieldnames=None)
         for row in reader:
-            print(row)
             id = random.randint(0, 200)
             if id not in ids:
                 words.insert_one({'id': id, 'word':row['Word'], 'difficulty':row['Difficulty']})
