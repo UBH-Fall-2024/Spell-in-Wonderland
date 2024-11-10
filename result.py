@@ -14,7 +14,6 @@ result_bp = Blueprint('result_bp', __name__,
 @result_bp.route('/result', methods=["GET"])
 def result():
     response = send_file('./templates/result.html', mimetype='text/html')
-    response = render_template('./templates/result.html')
     response.headers["X-Content-Type-Options"] = "nosniff"
     return make_response(response)
 
