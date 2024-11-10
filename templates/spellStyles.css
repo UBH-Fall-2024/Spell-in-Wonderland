@@ -51,7 +51,7 @@ body::before {
     margin-top: 20px;
     display: flex;
     align-items: center;
-    gap: 40px; /* Space between text and icon */
+    gap: 15px; /* Adjusted space for better alignment */
 }
 
 /* Styling for the speaker icon */
@@ -59,11 +59,12 @@ body::before {
     width: 24px;
     height: 24px;
     color: #4b0048;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .speaker-icon:hover svg {
     color: #3a0037; /* Color change on hover */
+    transform: scale(1.1); /* Slight scale-up effect */
 }
 
 /* Part of speech styling */
@@ -71,7 +72,7 @@ body::before {
     font-size: 1.3em;
     font-weight: bold;
     color: #333;
-    margin-top: -10px; /* Reduced space */
+    margin-top: 5px; /* Reduced space */
 }
 
 /* Definition styling */
@@ -109,6 +110,12 @@ body::before {
     margin: 0 auto; /* Centers input field horizontally */
 }
 
+/* Placeholder text styling */
+.form-container input[type="text"]::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
 /* Submit button styling */
 .form-container button {
     padding: 12px 25px;
@@ -120,6 +127,7 @@ body::before {
     border-radius: 5px;
     cursor: pointer;
     font-family: 'Times New Roman', serif;
+    transition: background-color 0.3s ease;
 }
 
 .form-container button:hover {
@@ -132,11 +140,34 @@ body::before {
     font-weight: bold;
     color: #4b0048;
     margin-bottom: 10px;
-    visibility: hidden; /* Hidden initially */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.5s ease; /* Fade-in effect */
 }
 
 .correct-word.shown {
-    visibility: visible;
-    font-weight: bold;
-    color: #4b0048;
+    opacity: 1; /* Fade in when shown */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    .pronunciation {
+        font-size: 1.5em;
+        gap: 10px;
+    }
+
+    .part-of-speech,
+    .definition {
+        font-size: 1.1em;
+    }
+    
+    .form-container input[type="text"],
+    .form-container button {
+        width: 100%;
+        font-size: 1em;
+    }
 }
