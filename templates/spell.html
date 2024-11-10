@@ -108,10 +108,10 @@ function handleSubmit(event) {
     // Compare user input to correct answer, ignoring case and whitespace
     if (userAnswer === correctAnswer.split(':')[0].toLowerCase()) { // Trim and lowercase correct answer
         document.getElementById('answer').style.color = "green";
-        putWord(correctAnswer, true);
+        putWord(correctWordElement, true);
     } else {
         document.getElementById('answer').style.color = "red";
-        putWord(correctAnswer, false);
+        putWord(correctWordElement, false);
     }
 
     // Show correct answer with fade-in effect
@@ -167,6 +167,7 @@ async function getWord() {
 
 async function putWord(wordGiven, correct) {
     const url = "/spell";
+    
     
     try {
         const response = await fetch(url, {
