@@ -24,7 +24,7 @@ body::before {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white overlay */
+    background-color: rgba(255, 255, 255, 0.5);
     z-index: -1;
 }
 
@@ -33,213 +33,99 @@ body::before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
     position: relative;
     z-index: 1;
+    width: 90%; /* Adjust container width for smaller screens */
 }
 
 /* Title styling */
 h1 {
     font-family: 'Cinzel', serif;
-    font-size: 4em;
+    font-size: 3.5em; /* Reduced size for smaller screens */
     color: #4b0048;
     margin: 0;
     font-weight: 700;
-    text-shadow: 2px 2px #ffffff; /* Adds slight depth to title */
+    text-shadow: 2px 2px #ffffff;
 }
 
-/* Buttons in a row below the title */
+/* Buttons container */
 .buttons-container {
     display: flex;
-    gap: 20px;
+    gap: 15px;
 }
 
 /* Button styling */
 .difficulty-button {
-    width: 200px;
-    padding: 15px;
-    margin-top: 50px;
-    font-size: 1.1em;
+    width: 100%; /* Full width within container */
+    max-width: 220px; /* Set a max-width for larger screens */
+    padding: 12px;
+    font-size: 1em;
     font-family: 'IM Fell English SC', serif;
     border-radius: 10px;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
+    margin: 5px 0; /* Add vertical spacing for small screens */
 }
 
 /* Button hover effect */
 .difficulty-button:hover {
-    transform: translateY(-5px); /* Lift button slightly on hover */
+    transform: translateY(-5px);
 }
 
-/* Container for each button and its label */
-.button-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* Mobile-friendly adjustments for very small screens */
+@media (max-width: 768px) {
+    .buttons-container {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 10px;
+    }
+
+    h1 {
+        font-size: 2.5em; /* Further reduce title size */
+    }
+
+    .difficulty-button {
+        width: 100%; /* Full width */
+        padding: 10px; /* Reduce padding for smaller screens */
+        font-size: 1em;
+    }
 }
 
-/* Styling for difficulty level labels */
-.difficulty-label {
-    font-size: 1em;
-    color: #4b0048;
-    font-weight: bold;
-    margin-top: 8px;
-}
+/* Styling for each button's color */
+.button-white-rabbit { background-color: #fffacd; }
+.button-cheshire-cat { background-color: #dda0dd; }
+.button-queen-of-hearts { background-color: #ff6347; }
+.button-mad-hatter { background-color: #87ceeb; }
 
-/* Button styles for each difficulty level */
+.button-white-rabbit:hover { background-color: #f5deb3; }
+.button-cheshire-cat:hover { background-color: #da70d6; }
+.button-queen-of-hearts:hover { background-color: #ff4500; }
+.button-mad-hatter:hover { background-color: #4682b4; }
 
-/* Existing button styles */
-.button-white-rabbit {
-    background-color: #fffacd;
-    width: 200px;
-    padding: 15px;
-    font-size: 1.2em;
-    font-family: 'IM Fell English SC', serif;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    position: relative; /* Enables positioning of hover image */
-}
-
-.button-white-rabbit:hover {
-    background-color: #f5deb3;
-}
-
-/* Hover effect to display the white rabbit image */
-.button-white-rabbit::after {
+/* Icon hover effects */
+.button-white-rabbit::after, .button-cheshire-cat::after, .button-queen-of-hearts::after, .button-mad-hatter::after {
     content: "";
     position: absolute;
-    top: -40px; /* Adjust as needed to position the image above the button */
+    top: -40px;
     left: 50%;
     transform: translateX(-50%);
-    width: 50px; /* Adjust size as needed */
-    height: 50px;
-    background-image: url('../static/bunny.png'); /* Update with the actual path to the rabbit icon */
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0;
-    transition: opacity 0.2s ease-in; /* Smooth fade-in */
-}
-
-.button-white-rabbit:hover::after {
-    opacity: 1;
-}
-
-
-/* Existing button styles for Cheshire Cat */
-.button-cheshire-cat {
-    background-color: #dda0dd;
-    width: 200px;
-    padding: 15px;
-    font-size: 1.2em;
-    font-family: 'IM Fell English SC', serif;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    position: relative; /* Enables positioning of hover image */
-}
-
-.button-cheshire-cat:hover {
-    background-color: #da70d6;
-}
-
-/* Hover effect to display the Cheshire Cat image */
-.button-cheshire-cat::after {
-    content: "";
-    position: absolute;
-    top: -40px; /* Adjust as needed to position the image above the button */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 45px; /* Adjust size as needed */
-    height: 45px;
-    background-image: url('../static/cat.png'); /* Update with the actual path to the Cheshire Cat icon */
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0;
-    transition: opacity 0.2s ease-in;
-}
-
-.button-cheshire-cat:hover::after {
-    opacity: 1;
-}
-
-/* Existing button styles for Queen of Hearts */
-.button-queen-of-hearts {
-    background-color: #ff6347;
-    width: 200px;
-    padding: 15px;
-    font-size: 1.2em;
-    font-family: 'IM Fell English SC', serif;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    position: relative; /* Enables positioning of hover image */
-}
-
-.button-queen-of-hearts:hover {
-    background-color: #ff4500;
-}
-
-/* Hover effect to display the Queen of Hearts image */
-.button-queen-of-hearts::after {
-    content: "";
-    position: absolute;
-    top: -40px; /* Adjust as needed to position the image above the button */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px; /* Adjust size as needed */
+    width: 40px;
     height: 40px;
-    background-image: url('../static/hearts.png'); /* Update with the actual path to the Queen of Hearts icon */
     background-size: contain;
     background-repeat: no-repeat;
     opacity: 0;
     transition: opacity 0.2s ease-in;
 }
 
-.button-queen-of-hearts:hover::after {
-    opacity: 1;
-}
+.button-white-rabbit::after { background-image: url('../static/bunny.png'); }
+.button-cheshire-cat::after { background-image: url('../static/cat.png'); }
+.button-queen-of-hearts::after { background-image: url('../static/hearts.png'); }
+.button-mad-hatter::after { background-image: url('../static/tophat.png'); }
 
-/* Existing button styles */
-.button-mad-hatter {
-    background-color: #87ceeb;
-    width: 200px;
-    padding: 15px;
-    font-size: 1.2em;
-    font-family: 'IM Fell English SC', serif;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    position: relative; /* Enables positioning of hover image */
-}
-
-.button-mad-hatter:hover {
-    background-color: #4682b4;
-}
-
-/* Hover effect to display the top hat image */
-.button-mad-hatter::after {
-    content: "";
-    position: absolute;
-    top: -40px; /* Adjust as needed to position the image above the button */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50px; /* Adjust size as needed */
-    height: 50px;
-    background-image: url('../static/tophat.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0;
-    transition: opacity 0.2s ease-in; /* Smooth fade-in */
-}
-
-/* Change opacity on hover */
+.button-white-rabbit:hover::after,
+.button-cheshire-cat:hover::after,
+.button-queen-of-hearts:hover::after,
 .button-mad-hatter:hover::after {
     opacity: 1;
 }
-

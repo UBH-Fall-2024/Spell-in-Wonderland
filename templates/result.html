@@ -12,32 +12,39 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>Scoreboard</h1>
-        
-        <!-- Score and Progress Bar Section -->
-        <div class="score-container">
-            <p>Words Correct: <span id="correct-count">0</span> / <span id="total-count">10</span></p>
-            <div class="progress-bar">
-                <div id="progress-fill" class="progress-fill"></div>
-            </div>
-        </div>
-        
-        <!-- Word Columns for Correct and Incorrect Words -->
-        <div class="word-columns">
-            <div class="column correct-words">
-                <h2>Correct Words</h2>
-                <ul id="correct-words-list">
-
-                </ul>
+    <div class="main-container">
+        <div class="container">
+            <h1>Scoreboard</h1>
+            
+            <!-- Score and Progress Bar Section -->
+            <div class="score-container">
+                <p>Words Correct: <span id="correct-count">0</span> / <span id="total-count">10</span></p>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
             </div>
             
-            <div class="column incorrect-words">
-                <h2>Incorrect Words</h2>
-                <ul id="incorrect-words-list">
-
-                </ul>
+            <!-- Word Columns for Correct and Incorrect Words -->
+            <div class="word-columns">
+                <div class="column correct-words">
+                    <h2>Correct Words</h2>
+                    <ul id="correct-words-list">
+                        <!-- Correct words will be populated here -->
+                    </ul>
+                </div>
+                
+                <div class="column incorrect-words">
+                    <h2>Incorrect Words</h2>
+                    <ul id="incorrect-words-list">
+                        <!-- Incorrect words will be populated here -->
+                    </ul>
+                </div>
             </div>
+        </div>
+    
+        <!-- Back button under the container -->
+        <div class="back-button-container">
+            <a href="/" class="back-button">Back down the rabbit hole</a>
         </div>
     </div>
 

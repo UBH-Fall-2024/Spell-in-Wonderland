@@ -27,8 +27,7 @@ def csv_to_db():
 @home_bp.route('/home', methods=["GET"])
 def home():
     response = send_file('./templates/home.html', mimetype='text/html')
-    if 'user_id' not in request.cookies:
-        response.set_cookie("user_id", value=add_user(secrets.token_urlsafe(80)), httponly=True, secure=True)
+    response.set_cookie("user_id", value=add_user(secrets.token_urlsafe(80)), httponly=True) #secure=True)
     response.headers["X-Content-Type-Options"] = "nosniff"
     csv_to_db()
     return make_response(response)

@@ -23,7 +23,7 @@ def easy_mode():
     if curr_user == None:
         return redirect(url_for("home"))
     response.headers["X-Content-Type-Options"] = "nosniff"
-    response.set_cookie("mode", value="easy", httponly=True, secure=True)
+    response.set_cookie("mode", value="easy", httponly=True)
     return make_response(response)
 
 @spell_bp.route('/cheshire-cat-spell', methods=["GET"])
@@ -35,7 +35,7 @@ def medium_mode():
     if curr_user == None:
         return redirect(url_for("home"))
     response.headers["X-Content-Type-Options"] = "nosniff"
-    response.set_cookie("mode", value="medium", httponly=True, secure=True)
+    response.set_cookie("mode", value="medium", httponly=True)
     return make_response(response)
 
 @spell_bp.route('/queen-of-hearts-spell', methods=["GET"])
@@ -47,7 +47,7 @@ def hard_mode():
     if curr_user == None:
         return redirect(url_for("home"))
     response.headers["X-Content-Type-Options"] = "nosniff"
-    response.set_cookie("mode", value="hard", httponly=True, secure=True)
+    response.set_cookie("mode", value="hard", httponly=True)
     return make_response(response)
 
 @spell_bp.route('/mad-hatter-spell', methods=["GET"])
@@ -59,7 +59,7 @@ def expert_mode():
     if curr_user == None:
         return redirect(url_for("home"))
     response.headers["X-Content-Type-Options"] = "nosniff"
-    response.set_cookie("mode", value="expert", httponly=True, secure=True)
+    response.set_cookie("mode", value="expert", httponly=True)
     return make_response(response)
 
 @spell_bp.route('/spell', methods=["GET"])
