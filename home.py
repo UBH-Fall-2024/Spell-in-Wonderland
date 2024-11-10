@@ -1,6 +1,8 @@
 from flask import Blueprint, send_file, make_response, request
 from pymongo import MongoClient
 import secrets
+import csv
+import random
 
 client = MongoClient("mongo")
 db = client["Spell-in-Wonderland"]
@@ -10,6 +12,17 @@ records = db['records']
 home_bp = Blueprint('home_bp', __name__,
     template_folder='templates',
     static_folder='static')
+
+def csv_to_db():
+    words.remove({})
+    ids = []
+    with open('words.csv', 'r') as words:
+        reader = csv.DictReader(words, fieldnames=None)
+        for row in reader:
+            print(row)
+            id = random.randint(0, 200)
+            if id not in ids:
+                words.insert_one({'id': id, 'word':row['Word'], 'difficulty':row['Difficulty']})
 
 @home_bp.route('/home', methods=["GET"])
 def home():
