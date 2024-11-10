@@ -11,38 +11,43 @@
     <link rel="icon" href="../static/teacup.png" type="image/png">
 </head>
 <body>
-    <div class="container">
-        <p>Listen to the word, read the definition, and type what you hear!</p>
-    
-        <!-- Word details with font hierarchy -->
-        <div class="word-details">
-            <p id="correct-word" class="correct-word"></p>
-            <div class="pronunciation">
-                <span class="speaker-icon" onclick="playPronunciation()" style="cursor: pointer;">
-                    <!-- Speaker Icon SVG -->
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 8.5v7h4l5 5v-17l-5 5H5zm9 1.5a3.5 3.5 0 0 1 0 5m2-7a6.5 6.5 0 0 1 0 9" stroke="currentColor" stroke-width="2" fill="none" />
-                    </svg>
-                </span>
-                <span id="phonetic-text"></span>
+    <div class="centered-container">
+        <div class="container">
+            <p>Listen to the word, read the definition, and type what you hear!</p>
+            
+            <!-- Word details and input area -->
+            <div class="word-details">
+                <p id="correct-word" class="correct-word"></p>
+                <div class="pronunciation">
+                    <span class="speaker-icon" onclick="playPronunciation()" style="cursor: pointer;">
+                        <!-- Speaker Icon SVG -->
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 8.5v7h4l5 5v-17l-5 5H5zm9 1.5a3.5 3.5 0 0 1 0 5m2-7a6.5 6.5 0 0 1 0 9" stroke="currentColor" stroke-width="2" fill="none" />
+                        </svg>
+                    </span>
+                    <span id="phonetic-text"></span>
+                </div>
+                <p class="part-of-speech"></p>
+                <p class="definition"></p>
             </div>
-            <p class="part-of-speech"></p>
-            <p class="definition"></p>
+    
+            <div class="form-container">
+                <form onsubmit="handleSubmit(event)" autocomplete="off">
+                    <input type="text" id="answer" placeholder="Type the word here...">
+                    <button type="submit" id="submit-btn">Submit</button>
+                </form>
+            </div>
         </div>
     
-        <!-- Form with text box and submit button -->
-        <div class="form-container">
-            <form onsubmit="handleSubmit(event)" autocomplete="off">
-                <input type="text" id="answer" placeholder="Type the word here...">
-                <button type="submit" id="submit-btn">Submit</button>
-            </form>
-        </div>
-
-        <!-- See Results button -->
         <div class="results-button-container">
-            <button onclick="viewResults()" class="results-button">Leave Wonderland</button>
+            <a href="/result">
+                <button class="results-button">Leave Wonderland</button>
+            </a>
         </div>
     </div>
+
+    
+
     
     <script>
         let correctAnswer = "";
@@ -161,10 +166,10 @@
                 }
         
                 const data = await response.json();
-                return data.word; // Directly return the word value
+                return data.word;
             } catch (error) {
                 console.error('Error fetching word:', error);
-                return null; // Return null if there’s an error
+                return null;
             }
         }
         
@@ -193,8 +198,11 @@
                 return null; // Return null if there’s an error
             }
         }
-        
-        
-            </script>
-        </body>
-        </html>
+
+        // Function to redirect to results page
+        function viewResults() {
+            window.location.href = "/result"; // Adjust URL to match your results page route
+        }
+    </script>
+</body>
+</html>
