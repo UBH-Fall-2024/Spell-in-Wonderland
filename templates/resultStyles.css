@@ -106,3 +106,34 @@ h1 {
     font-size: 1.2em;
     font-weight: bold;
 }
+
+/* Center the main container content vertically */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Style the back button */
+.back-button-container {
+    margin-top: 20px; /* Space above the button */
+}
+
+.back-button {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 1.2em;
+    background-color: #4b0048;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-family: 'IM Fell English SC', serif;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #3a0037;
+}
