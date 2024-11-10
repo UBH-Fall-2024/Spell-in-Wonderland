@@ -39,56 +39,52 @@
         </div>
 
         <!-- See Results button -->
-
-        <a href="/result">
-            <button class="results-button-container" >Leave Wonderland</button>
-        </a>
         <div class="results-button-container">
             <button onclick="viewResults()" class="results-button">Leave Wonderland</button>
         </div>
     </div>
     
     <script>
-    // Existing JavaScript functions
+        // Existing JavaScript functions
 
-    async function getWord() {
-        const url = "/spell";
-        
-        try {
-            const response = await fetch(url, { method: 'GET' });
-            if (!response.ok) throw new Error('Network response was not ok');
+        async function getWord() {
+            const url = "/spell";
             
-            const data = await response.json();
-            return data.word; // Directly return the word value
-        } catch (error) {
-            console.error('Error fetching word:', error);
-            return null; // Return null if there’s an error
+            try {
+                const response = await fetch(url, { method: 'GET' });
+                if (!response.ok) throw new Error('Network response was not ok');
+                
+                const data = await response.json();
+                return data.word; // Directly return the word value
+            } catch (error) {
+                console.error('Error fetching word:', error);
+                return null; // Return null if there’s an error
+            }
         }
-    }
 
-    async function putWord(wordGiven, correct) {
-        const url = "/spell";
-        
-        try {
-            const response = await fetch(url, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ wordGiven: wordGiven, correct: correct })
-            });
-            if (!response.ok) throw new Error('Network response was not ok');
+        async function putWord(wordGiven, correct) {
+            const url = "/spell";
             
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            console.error('Error updating word:', error);
-            return null;
+            try {
+                const response = await fetch(url, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ wordGiven: wordGiven, correct: correct })
+                });
+                if (!response.ok) throw new Error('Network response was not ok');
+                
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error updating word:', error);
+                return null;
+            }
         }
-    }
 
-    // Function to redirect to results page
-    function viewResults() {
-        window.location.href = "/results"; // Adjust URL to match your results page route
-    }
+        // Function to redirect to results page
+        function viewResults() {
+            window.location.href = "/results"; // Adjust URL to match your results page route
+        }
 
     </script>
 </body>
