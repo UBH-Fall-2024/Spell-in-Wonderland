@@ -9,9 +9,11 @@ spell_bp = Blueprint('spell_bp', __name__,
 @spell_bp.route('/spell', methods=["GET"])
 def home():
     response = send_file('./templates/spell.html', mimetype='text/html')
+    response.headers["X-Content-Type-Options"] = "nosniff"
     return make_response(response)
 
 @spell_bp.route('/spellStyles.css', methods=["GET"])
 def serve_home_css():
     response = send_file('./templates/spellStyles.css', mimetype='text/css')
+    response.headers["X-Content-Type-Options"] = "nosniff"
     return make_response(response)
