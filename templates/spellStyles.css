@@ -148,6 +148,11 @@ body::before {
     opacity: 1; /* Fade in when shown */
 }
 
+.correct-word.fade-out {
+    opacity: 0;
+    transition: opacity 0.01s ease-out; /* Faster fade-out effect */
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .container {
