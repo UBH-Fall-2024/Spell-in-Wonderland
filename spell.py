@@ -1,7 +1,6 @@
 from flask import Blueprint, send_file, make_response, request, render_template, current_app
 from pymongo import MongoClient
 import json
-import boto3
 import random
 
 client = MongoClient("mongo")

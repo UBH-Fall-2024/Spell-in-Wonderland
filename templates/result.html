@@ -28,41 +28,61 @@
             <div class="column correct-words">
                 <h2>Correct Words</h2>
                 <ul id="correct-words-list">
-                    <!-- Temporary correct words -->
-                    <li>facetious</li>
-                    <li>resilient</li>
-                    <li>tomorrow</li>
-                    <li>rendezvous</li>
+
                 </ul>
             </div>
             
             <div class="column incorrect-words">
                 <h2>Incorrect Words</h2>
                 <ul id="incorrect-words-list">
-                    <!-- Temporary incorrect words -->
-                    <li>license</li>
-                    <li>occurrence</li>
+
                 </ul>
             </div>
         </div>
     </div>
 
     <script>
-        // Temporary Data
-        const correctWords = ["Example1", "Example2"];
-        const incorrectWords = ["Example3", "Example4"];
+
+        
+// Call getResult on page load to fetch data
+window.onload = function() {
+    getResult();
+};
+       async function getResult() {
+    const url = "/result-api";
+
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+
+        // Extract correct and wrong words from response
+        const correctWords = data.correct_word_list || [];
+        const incorrectWords = data.wrong_word_list || [];
         const totalWords = correctWords.length + incorrectWords.length;
 
-        // Populate the score and progress bar with temporary data
+        // Update score and progress bar
         document.getElementById('correct-count').textContent = correctWords.length;
         document.getElementById('total-count').textContent = totalWords;
-
-        const percentage = Math.round((correctWords.length / totalWords) * 100);
+        
+        const percentage = totalWords > 0 ? Math.round((correctWords.length / totalWords) * 100) : 0;
         document.getElementById('progress-fill').style.width = `${percentage}%`;
 
         // Populate correct and incorrect words lists
         const correctList = document.getElementById('correct-words-list');
         const incorrectList = document.getElementById('incorrect-words-list');
+
+        correctList.innerHTML = ""; // Clear previous data
+        incorrectList.innerHTML = ""; // Clear previous data
 
         correctWords.forEach(word => {
             const li = document.createElement('li');
@@ -75,6 +95,12 @@
             li.textContent = word;
             incorrectList.appendChild(li);
         });
+
+    } catch (error) {
+        console.error('Error fetching result data:', error);
+    }
+}
+
     </script>
 </body>
 </html>
