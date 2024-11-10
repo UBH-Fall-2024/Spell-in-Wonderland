@@ -104,11 +104,14 @@ function handleSubmit(event) {
     const correctWordElement = document.getElementById('correct-word');
     const submitBtn = document.getElementById('submit-btn');
 
+
     // Compare user input to correct answer, ignoring case and whitespace
     if (userAnswer === correctAnswer.split(':')[0].toLowerCase()) { // Trim and lowercase correct answer
         document.getElementById('answer').style.color = "green";
+        putWord(correctAnswer, True);
     } else {
         document.getElementById('answer').style.color = "red";
+        putWord(correctAnswer, False);
     }
 
     // Show correct answer with fade-in effect
@@ -160,6 +163,32 @@ async function getWord() {
         return null; // Return null if there’s an error
     }
 }
+
+
+async function putWord(wordGiven, correct) {
+    const url = "/spell";
+    
+    try {
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ wordGiven: wordGiven, correct: correct })
+        });
+        
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        
+        const data = await response.json();
+        return data; // Return the response data from the server if needed
+    } catch (error) {
+        console.error('Error updating word:', error);
+        return null; // Return null if there’s an error
+    }
+}
+
 
     </script>
 </body>
