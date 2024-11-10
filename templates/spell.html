@@ -13,8 +13,8 @@
 <body>
     <div class="container">
         <p>Listen to the word, read the definition, and type what you hear!</p>
-    
-        <!-- Word details with font hierarchy -->
+        
+        <!-- Word details and input area -->
         <div class="word-details">
             <p id="correct-word" class="correct-word"></p>
             <div class="pronunciation">
@@ -29,8 +29,7 @@
             <p class="part-of-speech"></p>
             <p class="definition"></p>
         </div>
-    
-        <!-- Form with text box and submit button -->
+
         <div class="form-container">
             <form onsubmit="handleSubmit(event)" autocomplete="off">
                 <input type="text" id="answer" placeholder="Type the word here...">
@@ -38,33 +37,32 @@
             </form>
         </div>
 
-        <!-- See Results button -->
-        <div class="results-button-container">
-            <button onclick="viewResults()" class="results-button">Leave Wonderland</button>
-        </div>
+            <div class="results-button-container">
+        <a href="/result">
+            <button class="results-button">Leave Wonderland</button>
+        </a>
+    </div>
     </div>
     
-    <script>
-        // Existing JavaScript functions
 
+    
+    <script>
         async function getWord() {
             const url = "/spell";
-            
             try {
                 const response = await fetch(url, { method: 'GET' });
                 if (!response.ok) throw new Error('Network response was not ok');
                 
                 const data = await response.json();
-                return data.word; // Directly return the word value
+                return data.word;
             } catch (error) {
                 console.error('Error fetching word:', error);
-                return null; // Return null if there’s an error
+                return null;
             }
         }
 
         async function putWord(wordGiven, correct) {
             const url = "/spell";
-            
             try {
                 const response = await fetch(url, {
                     method: 'PUT',
@@ -83,9 +81,8 @@
 
         // Function to redirect to results page
         function viewResults() {
-            window.location.href = "/results"; // Adjust URL to match your results page route
+            window.location.href = "/result"; // Adjust URL to match your results page route
         }
-
     </script>
 </body>
 </html>

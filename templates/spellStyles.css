@@ -154,11 +154,13 @@ body::before {
 }
 
 
-/* Results button styling */
+/* Results button container styling */
 .results-button-container {
-    margin-top: 20px;
+    margin-top: 20px; /* Space above button */
+    text-align: center; /* Center-align button */
 }
 
+/* Styling for the "Leave Wonderland" button */
 .results-button {
     width: 200px;
     padding: 12px;
