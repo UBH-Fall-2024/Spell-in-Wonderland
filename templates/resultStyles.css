@@ -1,0 +1,108 @@
+/* General styling */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'IM Fell English SC', serif;
+    color: #333;
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Background image */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../static/backgroundMUSH.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+/* Container styling */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 800px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9); /* Increased opacity for a slight overlay */
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+}
+
+/* Title styling */
+h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3em;
+    color: #4b0048;
+    margin: 0;
+    font-weight: 700;
+    text-shadow: 2px 2px #ffffff;
+}
+
+/* Score container and progress bar */
+.score-container {
+    text-align: center;
+    font-size: 1.3em;
+    color: #4b0048;
+    margin-top: 20px;
+}
+
+.progress-bar {
+    width: 80%;
+    height: 25px;
+    background-color: #ddd;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 10px auto;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+    background-color: #4CAF50;
+    border-radius: 15px;
+    transition: width 0.5s ease;
+}
+
+/* Word Columns Styling */
+.word-columns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.column {
+    width: 45%;
+}
+
+.correct-words h2,
+.incorrect-words h2 {
+    font-size: 1.5em;
+    color: #4b0048;
+}
+
+.correct-words ul li {
+    color: green;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.incorrect-words ul li {
+    color: red;
+    font-size: 1.2em;
+    font-weight: bold;
+}
