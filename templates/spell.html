@@ -46,8 +46,7 @@ let audioUrl = "";
 let audio; // Global audio object
 
 window.onload = function() {
-    getWord();
-    const word = 'car';
+    var word = getWord();
     fetchWordData(word);
 };
 
@@ -139,8 +138,26 @@ function loadNextWord() {
     document.getElementById('submit-btn').textContent = "Submit";
     document.getElementById('submit-btn').onclick = null;
 
-    const nextWord = "example";  // Replace with logic to fetch the next word
+    var nextWord = getWord();  // Replace with logic to fetch the next word
     fetchWordData(nextWord);
+}
+
+async function getWord() {
+    const url = "/spell";
+    
+    try {
+        const response = await fetch(url, { method: 'GET' });
+        
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        
+        const data = await response.json();
+        return data.word; // Directly return the word value
+    } catch (error) {
+        console.error('Error fetching word:', error);
+        return null; // Return null if there’s an error
+    }
 }
 
     </script>
