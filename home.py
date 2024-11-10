@@ -23,6 +23,7 @@ def csv_to_db():
             if id not in ids:
                 words.insert_one({'id': id, 'word':row['Word'], 'difficulty':row['Difficulty']})
 
+@home_bp.route('/')
 @home_bp.route('/home', methods=["GET"])
 def home():
     response = send_file('./templates/home.html', mimetype='text/html')

@@ -1,7 +1,6 @@
 from flask import Blueprint, send_file, make_response, request, render_template, current_app
 from pymongo import MongoClient
 import json
-import boto3
 import random
 
 client = MongoClient("mongo")
@@ -18,6 +17,12 @@ def easy_mode():
     response = send_file('./templates/spell.html', mimetype='text/html')
     if "user_id" not in request.cookies:
         return send_file('./templates/home.html', mimetype="text/html")
+    curr_user = records.find_one({"user_id":request.cookies.get("user_id")})
+    current_app.logger.info(request.cookies.get(curr_user))
+    if curr_user == None:
+        new_response = send_file('./templates/home.html', mimetype="text/html")
+        new_response.set_cookie("user_id", max_age=0)
+        return new_response
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.set_cookie("mode", value="easy", httponly=True, secure=True)
     return make_response(response)
@@ -26,6 +31,10 @@ def easy_mode():
 def medium_mode():
     response = send_file('./templates/spell.html', mimetype='text/html')
     if "user_id" not in request.cookies:
+        return send_file('./templates/home.html', mimetype="text/html")
+    curr_user = records.find_one({"user_id":request.cookies.get("user_id")})
+    if curr_user == None:
+        response.set_cookie("user_id", max_age=0)
         return send_file('./templates/home.html', mimetype="text/html")
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.set_cookie("mode", value="medium", httponly=True, secure=True)
@@ -36,6 +45,10 @@ def hard_mode():
     response = send_file('./templates/spell.html', mimetype='text/html')
     if "user_id" not in request.cookies:
         return send_file('./templates/home.html', mimetype="text/html")
+    curr_user = records.find_one({"user_id":request.cookies.get("user_id")})
+    if curr_user == None:
+        response.set_cookie("user_id", max_age=0)
+        return send_file('./templates/home.html', mimetype="text/html")
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.set_cookie("mode", value="hard", httponly=True, secure=True)
     return make_response(response)
@@ -44,6 +57,10 @@ def hard_mode():
 def expert_mode():
     response = send_file('./templates/spell.html', mimetype='text/html')
     if "user_id" not in request.cookies:
+        return send_file('./templates/home.html', mimetype="text/html")
+    curr_user = records.find_one({"user_id":request.cookies.get("user_id")})
+    if curr_user == None:
+        response.set_cookie("user_id", max_age=0)
         return send_file('./templates/home.html', mimetype="text/html")
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.set_cookie("mode", value="expert", httponly=True, secure=True)
@@ -66,6 +83,9 @@ def update_record():
         records.update_one({"user_id": user_id}, {"$push": {"correct": word}})
     else:
         records.update_one({"user_id": user_id}, {"$push": {"wrong": word}})
+    response = make_response("")
+    response.status_code = 200
+    return response
 
 
 @spell_bp.route('/spellStyles.css', methods=["GET"])

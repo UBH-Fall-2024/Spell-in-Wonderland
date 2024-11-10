@@ -18,6 +18,12 @@ def result():
     response.headers["X-Content-Type-Options"] = "nosniff"
     return make_response(response)
 
+@result_bp.route('/resultStyles.css', methods=["GET"])
+def serve_home_css():
+    response = send_file('./templates/resultStyles.css', mimetype='text/css')
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    return make_response(response)
+
 @result_bp.route('/result-api', methods=["GET"])
 def result_api():
     user_id = request.cookies["user_id"]
