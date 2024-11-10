@@ -108,10 +108,10 @@ function handleSubmit(event) {
     // Compare user input to correct answer, ignoring case and whitespace
     if (userAnswer === correctAnswer.split(':')[0].toLowerCase()) { // Trim and lowercase correct answer
         document.getElementById('answer').style.color = "green";
-        putWord(correctWordElement, true);
+        putWord(correctAnswer.split(':')[0].toLowerCase(), true);
     } else {
         document.getElementById('answer').style.color = "red";
-        putWord(correctWordElement, false);
+        putWord(correctAnswer.split(':')[0].toLowerCase(), false);
     }
 
     // Show correct answer with fade-in effect
