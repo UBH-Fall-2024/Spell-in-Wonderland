@@ -160,9 +160,9 @@ body::before {
 }
 
 .results-button {
-    width: 150px;
-    padding: 10px;
-    font-size: 1.1em;
+    width: 200px;
+    padding: 12px;
+    font-size: 1.2em;
     background-color: #4b0048;
     color: #fff;
     border: none;
