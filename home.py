@@ -6,7 +6,7 @@ import random
 
 client = MongoClient("mongo")
 db = client["Spell-in-Wonderland"]
-words = db['words']
+words = db['word']
 records = db['records']
 
 home_bp = Blueprint('home_bp', __name__,
@@ -16,8 +16,8 @@ home_bp = Blueprint('home_bp', __name__,
 def csv_to_db():
     words.remove({})
     ids = []
-    with open('words.csv', 'r') as words:
-        reader = csv.DictReader(words, fieldnames=None)
+    with open('words.csv', 'r') as readIN:
+        reader = csv.DictReader(readIN, fieldnames=None)
         for row in reader:
             print(row)
             id = random.randint(0, 200)
@@ -27,13 +27,13 @@ def csv_to_db():
 @home_bp.route('/home', methods=["GET"])
 def home():
     response = send_file('./templates/home.html', mimetype='text/html')
-    csv_to_db()
     user_id = ""
     if 'user_id' in request.cookies:
         user_id = request.cookies['user_id']
     else:
         response.set_cookie("user_id", value=add_user(secrets.token_urlsafe(80)), httponly=True, secure=True)
     response.headers["X-Content-Type-Options"] = "nosniff"
+    csv_to_db()
     return make_response(response)
 
 @home_bp.route('/styles.css', methods=["GET"])
