@@ -19,7 +19,6 @@ body {
     border-radius: 8px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
-
 }
 
 /* Background image and white overlay */
@@ -44,12 +43,27 @@ body::before {
     margin-top: 20px;
 }
 
-/* Pronunciation styling */
+/* Pronunciation styling with Flexbox */
 .pronunciation {
     font-size: 1.8em;
     font-style: italic;
     color: #4b0048;
-    margin-top: 50px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 40px; /* Space between text and icon */
+}
+
+/* Styling for the speaker icon */
+.speaker-icon svg {
+    width: 24px;
+    height: 24px;
+    color: #4b0048;
+    transition: color 0.3s ease;
+}
+
+.speaker-icon:hover svg {
+    color: #3a0037; /* Color change on hover */
 }
 
 /* Part of speech styling */
@@ -110,4 +124,19 @@ body::before {
 
 .form-container button:hover {
     background-color: #3a0037;
+}
+
+/* Styling for the correct word */
+.correct-word {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #4b0048;
+    margin-bottom: 10px;
+    visibility: hidden; /* Hidden initially */
+}
+
+.correct-word.shown {
+    visibility: visible;
+    font-weight: bold;
+    color: #4b0048;
 }
