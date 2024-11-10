@@ -12,9 +12,11 @@ records = db['records']
 
 from home import home_bp
 from spell import spell_bp
+from result import result_bp
 
 app.register_blueprint(home_bp)
 app.register_blueprint(spell_bp)
+app.register_blueprint(result_bp)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)
