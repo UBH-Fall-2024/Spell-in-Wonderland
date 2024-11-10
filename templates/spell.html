@@ -45,9 +45,10 @@ let correctAnswer = "";
 let audioUrl = "";
 let audio; // Global audio object
 
-window.onload = function() {
-    var word = getWord();
-    fetchWordData(word);
+window.onload = async function() {
+    const word = await getWord(); // Wait for the word to be fetched
+    console.log(word); // Print the word to check it
+    fetchWordData(word); // Pass the word to fetchWordData
 };
 
 function fetchWordData(word) {
@@ -122,7 +123,7 @@ function handleSubmit(event) {
     };
 }
 
-function loadNextWord() {
+async function loadNextWord() {
     const correctWordElement = document.getElementById('correct-word');
     
     // Apply fade-out effect, then hide it after the transition
@@ -138,7 +139,7 @@ function loadNextWord() {
     document.getElementById('submit-btn').textContent = "Submit";
     document.getElementById('submit-btn').onclick = null;
 
-    var nextWord = getWord();  // Replace with logic to fetch the next word
+    const nextWord = await getWord();  // Replace with logic to fetch the next word
     fetchWordData(nextWord);
 }
 
