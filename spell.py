@@ -1,5 +1,6 @@
 from flask import Blueprint, send_file, make_response, request, render_template, current_app
 from pymongo import MongoClient
+import json
 import boto3
 import random
 
@@ -17,7 +18,6 @@ def easy_mode():
     response = send_file('./templates/spell.html', mimetype='text/html')
     if "user_id" not in request.cookies:
         return send_file('./templates/home.html', mimetype="text/html")
-    response = render_template('./templates/spell.html')
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.set_cookie("mode", value="easy", httponly=True, secure=True)
     return make_response(response)
@@ -27,7 +27,6 @@ def medium_mode():
     response = send_file('./templates/spell.html', mimetype='text/html')
     if "user_id" not in request.cookies:
         return send_file('./templates/home.html', mimetype="text/html")
-    response = render_template('./templates/spell.html')
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.set_cookie("mode", value="medium", httponly=True, secure=True)
     return make_response(response)
@@ -37,7 +36,6 @@ def hard_mode():
     response = send_file('./templates/spell.html', mimetype='text/html')
     if "user_id" not in request.cookies:
         return send_file('./templates/home.html', mimetype="text/html")
-    response = render_template('./templates/spell.html')
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.set_cookie("mode", value="hard", httponly=True, secure=True)
     return make_response(response)
@@ -47,11 +45,18 @@ def expert_mode():
     response = send_file('./templates/spell.html', mimetype='text/html')
     if "user_id" not in request.cookies:
         return send_file('./templates/home.html', mimetype="text/html")
-    response = render_template('./templates/spell.html')
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.set_cookie("mode", value="expert", httponly=True, secure=True)
     return make_response(response)
 
+@spell_bp.route('/spell', methods=["GET"])
+def get_word():
+    needed_difficulty = request.cookies.get("mode")
+    needed_user = request.cookies.get("user_id")
+    chosen_word = choose_word(needed_difficulty, needed_user)
+    data = {"word": chosen_word}
+    return json.dumps(data)
+    
 @spell_bp.route('/spellStyles.css', methods=["GET"])
 def serve_home_css():
     response = send_file('./templates/spellStyles.css', mimetype='text/css')
