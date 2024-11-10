@@ -153,6 +153,29 @@ body::before {
     transition: opacity 0.01s ease-out; /* Faster fade-out effect */
 }
 
+
+/* Results button styling */
+.results-button-container {
+    margin-top: 20px;
+}
+
+.results-button {
+    width: 150px;
+    padding: 10px;
+    font-size: 1.1em;
+    background-color: #4b0048;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'IM Fell English SC', serif;
+    transition: background-color 0.3s ease;
+}
+
+.results-button:hover {
+    background-color: #3a0037;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .container {
