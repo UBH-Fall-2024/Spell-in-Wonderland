@@ -1,0 +1,212 @@
+/* General body styling */
+body {
+    font-family: 'Times New Roman', serif;
+    color: #333;
+    background-color: #f9f9f9;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+}
+
+/* Container styling */
+.container {
+    max-width: 700px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Background image and white overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../static/backgroundMUSH.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white overlay */
+    z-index: -1;
+}
+
+/* Word details section with left alignment */
+.word-details {
+    text-align: left;
+    margin-top: 20px;
+}
+
+/* Pronunciation styling with Flexbox */
+.pronunciation {
+    font-size: 1.8em;
+    font-style: italic;
+    color: #4b0048;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Adjusted space for better alignment */
+}
+
+/* Styling for the speaker icon */
+.speaker-icon svg {
+    width: 24px;
+    height: 24px;
+    color: #4b0048;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.speaker-icon:hover svg {
+    color: #3a0037; /* Color change on hover */
+    transform: scale(1.1); /* Slight scale-up effect */
+}
+
+/* Part of speech styling */
+.part-of-speech {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #333;
+    margin-top: 5px; /* Reduced space */
+}
+
+/* Definition styling */
+.definition {
+    font-size: 1.2em;
+    color: #333;
+    margin-top: -20px; /* Reduced space */
+    line-height: 1.4; /* Reduced line height */
+}
+
+/* Example sentence styling */
+.example {
+    font-size: 1.1em;
+    color: #777;
+    font-style: italic;
+    margin-top: -20px; /* Reduced space */
+    line-height: 1.4;
+}
+
+/* Form container styling */
+.form-container {
+    margin-top: 20px;
+}
+
+/* Input field styling */
+.form-container input[type="text"] {
+    width: 80%; /* Adjust width as needed */
+    padding: 12px;
+    font-size: 1.2em;
+    margin-top: 50px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Times New Roman', serif;
+    display: block;
+    margin: 0 auto; /* Centers input field horizontally */
+}
+
+/* Placeholder text styling */
+.form-container input[type="text"]::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+/* Submit button styling */
+.form-container button {
+    padding: 12px 25px;
+    font-size: 1.2em;
+    margin-top: 15px;
+    background-color: #4b0048;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Times New Roman', serif;
+    transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+    background-color: #3a0037;
+}
+
+/* Styling for the correct word */
+.correct-word {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #4b0048;
+    margin-bottom: 10px;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.5s ease; /* Fade-in effect */
+}
+
+.correct-word.shown {
+    opacity: 1; /* Fade in when shown */
+}
+
+.correct-word.fade-out {
+    opacity: 0;
+    transition: opacity 0.01s ease-out; /* Faster fade-out effect */
+}
+
+
+/* Results button container styling */
+.results-button-container {
+    margin-top: 20px; /* Space above button */
+    text-align: center; /* Center-align button */
+}
+
+/* Styling for the "Leave Wonderland" button */
+.results-button {
+    width: 200px;
+    padding: 12px;
+    font-size: 1.2em;
+    background-color: #4b0048;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'IM Fell English SC', serif;
+    transition: background-color 0.3s ease;
+}
+
+.results-button:hover {
+    background-color: #3a0037;
+}
+
+/* Centered container styling */
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    .pronunciation {
+        font-size: 1.5em;
+        gap: 10px;
+    }
+
+    .part-of-speech,
+    .definition {
+        font-size: 1.1em;
+    }
+    
+    .form-container input[type="text"],
+    .form-container button {
+        width: 100%;
+        font-size: 1em;
+    }
+}

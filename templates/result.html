@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spell in Wonderland - Scoreboard</title>
+    <link rel="stylesheet" href="resultStyles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    <link rel="icon" href="../static/teacup.png" type="image/png">
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="container">
+            <h1>Scoreboard</h1>
+            
+            <!-- Score and Progress Bar Section -->
+            <div class="score-container">
+                <p>Words Correct: <span id="correct-count">0</span> / <span id="total-count">10</span></p>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+            </div>
+            
+            <!-- Word Columns for Correct and Incorrect Words -->
+            <div class="word-columns">
+                <div class="column correct-words">
+                    <h2>Correct Words</h2>
+                    <ul id="correct-words-list">
+                        <!-- Correct words will be populated here -->
+                    </ul>
+                </div>
+                
+                <div class="column incorrect-words">
+                    <h2>Incorrect Words</h2>
+                    <ul id="incorrect-words-list">
+                        <!-- Incorrect words will be populated here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Back button under the container -->
+        <div class="back-button-container">
+            <a href="/" class="back-button">Back down the rabbit hole</a>
+        </div>
+    </div>
+
+    <script>
+
+        
+// Call getResult on page load to fetch data
+window.onload = function() {
+    getResult();
+};
+       async function getResult() {
+    const url = "/result-api";
+
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+
+        // Extract correct and wrong words from response
+        const correctWords = data.correct_word_list || [];
+        const incorrectWords = data.wrong_word_list || [];
+        const totalWords = correctWords.length + incorrectWords.length;
+
+        // Update score and progress bar
+        document.getElementById('correct-count').textContent = correctWords.length;
+        document.getElementById('total-count').textContent = totalWords;
+        
+        const percentage = totalWords > 0 ? Math.round((correctWords.length / totalWords) * 100) : 0;
+        document.getElementById('progress-fill').style.width = `${percentage}%`;
+
+        // Populate correct and incorrect words lists
+        const correctList = document.getElementById('correct-words-list');
+        const incorrectList = document.getElementById('incorrect-words-list');
+
+        correctList.innerHTML = ""; // Clear previous data
+        incorrectList.innerHTML = ""; // Clear previous data
+
+        correctWords.forEach(word => {
+            const li = document.createElement('li');
+            li.textContent = word;
+            correctList.appendChild(li);
+        });
+
+        incorrectWords.forEach(word => {
+            const li = document.createElement('li');
+            li.textContent = word;
+            incorrectList.appendChild(li);
+        });
+
+    } catch (error) {
+        console.error('Error fetching result data:', error);
+    }
+}
+
+    </script>
+</body>
+</html>
